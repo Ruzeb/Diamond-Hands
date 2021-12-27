@@ -1,0 +1,16 @@
+{
+  "name": "stonks",
+  "version": "1.0.0",
+  "description": "Solo Project stock CRUD app",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js"
+  },
+  "author": "Ruzeb Chowdhury",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^3.7.0",
+    "express": "^4.17.2"
+  }
+}

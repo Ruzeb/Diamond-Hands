@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stonks</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <section id="sidebar">
+      <div id="sidebar-icons">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+      </div>
+      <h2 id="list-name">My List</h2>
+      <ul id="stock-list">
+        <li class="stock-item">$TSLA</li>
+        <li class="stock-item">$AMC</li>
+        <li class="stock-item">$GME</li>
+      </ul>
+      <button class="add-stock">Add Stock</button>
+    </section>
+    
+    <section id="main">
+      <h1>STONKS</h1>
+      <input id="searchbar" type="search" placeholder="Search">
+      <div id="stock-header">
+        <h2 id="stock-title">TSLA</h2>
+        <h2 id="stock-price">$1000</h2>
+        <button class="add-stock">Add Stock</button>
+      </div>
+      <article id="chart">
+        <canvas id="myChart" width="400px" height="400px"></canvas>
+      </article>
+      <article id="buy-sell">
+        <input type="number" min="1" max="10000">
+        <button>BUY</button>
+        <button>SELL</button>
+      </article>
+    </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const labels = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+    ];
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'My First dataset',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 10, 5, 2, 20, 30, 45],
+      }]
+    };
+    const config = {
+      type: 'line',
+      data: data,
+      options: {responsive: false}
+    };
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+  </body>
+</html>
