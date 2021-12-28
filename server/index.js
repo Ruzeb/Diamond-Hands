@@ -3,6 +3,7 @@ const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const uri = "mongodb+srv://ruzeb:mongodb@cluster0.exjb3.mongodb.net/diamond_hands?retryWrites=true&w=majority";
 
 app.use(express.json());
 
