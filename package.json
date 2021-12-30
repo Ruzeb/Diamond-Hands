@@ -2,9 +2,9 @@
   "name": "stonks",
   "version": "1.0.0",
   "description": "Solo Project stock CRUD app",
-  "main": ".eslintrc.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color \" \"nodemon ./server/server.js\"",
     "start": "nodemon server/index.js"
   },
   "repository": {
@@ -14,15 +14,24 @@
   "author": "Ruzeb Chowdhury",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "chart.js": "^3.7.0",
     "express": "^4.17.2",
-    "node-fetch": "^3.1.0",
+    "mongoose": "^6.1.4",
+    "node-fetch": "^2.6.6",
     "pg": "^8.7.1",
     "react": "^17.0.2",
+    "react-chartjs-2": "^4.0.0",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
+    "react-redux": "^7.2.6",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "sass-loader": "^12.4.0"
   },
   "devDependencies": {

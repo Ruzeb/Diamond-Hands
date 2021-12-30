@@ -37,11 +37,15 @@ module.exports = {
      * to localhost:3000/api/* (where our Express server is running)
      */
     proxy: {
-      '/api/**': {
+      '/stock/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
       '/assets/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      },
+      '/login/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
@@ -54,6 +58,9 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         },
       },
       {
@@ -65,7 +72,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './client/index.html',
     }),
   ],
   resolve: {
