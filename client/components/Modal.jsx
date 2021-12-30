@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getUserStockList } from '../actions/actions';
+import { getUserStockList, setUser } from '../actions/actions';
 
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
@@ -9,7 +9,10 @@ const mapDispatchToProps = dispatch => ({
     e.preventDefault();
     console.log(e.target.form[0].value, e.target.form[1].value);
     dispatch(getUserStockList(e.target.form[0].value, e.target.form[1].value));
-  }
+    dispatch(setUser(e.target.form[0].value));
+  },
+
+
 });
 //const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

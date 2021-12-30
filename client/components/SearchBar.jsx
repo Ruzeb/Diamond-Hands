@@ -3,30 +3,32 @@ import StockItem from './StockItem'
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
-// console.log('here');
+// console.log('searchbar');
 
 const stockItemMaker = (stockName, idx, changeSelectedStock) => {
-  // console.log("stockItemMaker", stockName, idx);
+  console.log("stockItemMaker", stockName, idx);
   return <StockItem 
     key={idx} 
     stockName={stockName} 
     changeSelectedStock={() => changeSelectedStock(stockName)} 
   />
 }
-
-
 // const mapDispatchToProps = dispatch => ({
 //   changeSelectedStock: () => dispatch(actions.changeSelectedStock()),
 // })
 
-const StockList = ({stockList, changeSelectedStock}) => {
-  // console.log('stocklist', stockList)
+const SearchBar = ({searchList, changeSelectedStock, getSearchListOnChange}) => {
+  // console.log('stocklist', list)
   return (
-    <ul id="stock-list">
-      {stockList.stockList.map((stockName, idx) => stockItemMaker(stockName, idx, changeSelectedStock))}
-    </ul>
+    <div id="search-container">
+      <input id="searchbar" type="search" placeholder="Search" onChange={(e) => getSearchListOnChange(e.target.value)}/>
+      <ul id="search-list">
+        {searchList.map((stockName, idx) => stockItemMaker(stockName, idx, changeSelectedStock))}
+      </ul>
+    </div>
+    
   )
 }
 
 // export default connect(null, mapDispatchToProps)(StockList);
-export default StockList;
+export default SearchBar;

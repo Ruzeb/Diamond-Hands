@@ -1,7 +1,9 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
+  userName: '',
   stockName: 'HOOD',
+  searchList: [],
   stockList: ['AMC', 'TSLA', 'HOOD'],
   data : {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
@@ -24,6 +26,14 @@ const parseData = (data) => {
   return [arrLabels, arrData];
 }
 
+const parseSearchResults = (data) => {
+  const matches = [];
+  for (const match of data){
+    matches.push(match['1. symbol'])
+  }
+  return matches;
+}
+
 
 const stockListReducer = (state=initialState, action) => {
   switch (action.type){
@@ -35,11 +45,11 @@ const stockListReducer = (state=initialState, action) => {
       datasets[0]['label'] = action.payload['Meta Data']['2. Symbol'];
       datasets[0]['data'] = timeSeriesData;
       // console.log(datasets);
-      console.log('datasets');
+      // console.log('datasets');
 
       const data = {...state.data, datasets: datasets, labels: labels};
       // console.log('data', data);
-      console.log(action.payload)
+      // console.log(action.payload)
       return {
         ...state,
         stockName: action.payload['Meta Data']['2. Symbol'],
@@ -47,10 +57,31 @@ const stockListReducer = (state=initialState, action) => {
       };
 
       case types.GET_USER_STOCKLIST:
-        console.log(action.payload.stockList.list)
+        // console.log(action.payload)
         return {
           ...state,
-          stockList: action.payload['stockList']['list']
+          stockList: action.payload['stockList']
+        };
+
+      case types.GET_SEARCH_STOCKLIST:
+        // console.log(action.payload)
+        return {
+          ...state,
+          searchList: parseSearchResults(action.payload['bestMatches'])
+        };
+
+      case types.ADD_STOCK_TO_LIST:
+        console.log(action.payload)
+        return {
+          ...state,
+          stockList: action.payload['stockList']
+        };
+
+      case types.SET_USER:
+        console.log('user in reducer!', action.payload)
+        return {
+          ...state,
+          userName: action.payload
         };
 
     default:

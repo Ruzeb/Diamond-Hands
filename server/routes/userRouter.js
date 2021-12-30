@@ -7,12 +7,16 @@ const userRouter = express.Router();
 // });
 
 userRouter.post('/', userController.verifyUser, (req, res) => {
-  console.log(res.locals.user);
+  console.log('user', res.locals.user);
   return res.status(200).json(res.locals.user);
 });
 
 userRouter.post('/signup', userController.createUser, (req, res) => {
-  return res.status(200);
+  return res.status(200).end();
+});
+
+userRouter.patch('/addStock', userController.addToStockList, (req, res) => {
+  return res.status(200).json(res.locals.user);
 });
 
 module.exports = userRouter;

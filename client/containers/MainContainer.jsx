@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { LineChart } from "../components/Chart";
+import SearchBar from '../components/SearchBar';
+import * as actions from '../actions/actions';
 
-const mapStateToProps = ({
-  stockList: { stockName, data }
-}) => ({
+const mapStateToProps = ({stockList: {userName, stockName, data, searchList }}) => ({
+  userName,
   stockName,
-  data
+  data,
+  searchList
 })
 
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const MainContainer = props => {
   //console.log('maincontainer', props.stockName)
-  console.log('maincontainer', props.data)
+  // console.log('maincontainer', props.data)
   return (
     <main>
       <img id='logo' src='https://i.imgur.com/eAjpVVG.jpg'/>
-      <input id="searchbar" type="search" placeholder="Search"/>
+      <SearchBar 
+        searchList={props.searchList} 
+        changeSelectedStock={props.changeSelectedStock}
+        getSearchListOnChange={props.getSearchStockList}
+      />
       <div id="stock-header">
         <h2 id="stock-title">{props.stockName}</h2>
         <h2 id="stock-price">${props.data.datasets[0]['data'].slice(-1)}</h2>
-        <button className="add-stock">Add Stock</button>
+        <button className="add-stock" value={props.stockName} onClick={(e) => props.addStockToUserList(props.userName, e.target.value)}>Add Stock</button>
       </div>
       <div id="chart">
         <LineChart chartData = {props.data}/>
@@ -34,4 +42,4 @@ const MainContainer = props => {
   )
 }
 
-export default connect(mapStateToProps, null)(MainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
