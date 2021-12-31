@@ -26,18 +26,19 @@ const MainContainer = props => {
         getSearchListOnChange={props.getSearchStockList}
       />
       <div id="stock-header">
-        <h2 id="stock-title">{props.stockName}</h2>
-        <h2 id="stock-price">${props.data.datasets[0]['data'].slice(-1)}</h2>
+        <div id="stock-info">
+          <h2 id="stock-title">{props.stockName}</h2>
+          <h2 id="stock-price">${props.data.datasets[0]['data'].slice(-1)}</h2>
+        </div>
         <button className="add-stock" value={props.stockName} onClick={(e) => props.addStockToUserList(props.userName, e.target.value)}>Add Stock</button>
       </div>
-      <div id="chart">
-        <LineChart chartData = {props.data}/>
-      </div>
-      <article id="buy-sell">
+      <LineChart chartData = {props.data}/>
+
+      {/* <article id="buy-sell">
         <input type="number" min="1" max="10000"/>
         <button>BUY</button>
         <button>SELL</button>
-      </article>
+      </article> */}
     </main>
   )
 }

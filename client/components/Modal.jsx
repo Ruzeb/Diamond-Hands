@@ -19,17 +19,20 @@ const mapDispatchToProps = dispatch => ({
 const Modal = (props) => {
   return (
     <div id="modal-overlay">
-      <div id="form-modal"> 
-      <form>
-        <label htmlFor="username">Username: </label>
-        <input type="text" name="username" placeholder="Enter your username"/>
-        <label htmlFor="password">Password: </label>
-        <input type="password" name="password" placeholder="Enter your username"/>
-        <button onClick={(e) => {props.login(e);props.onCloseButtonClick();}}>Login</button>
-        <button onClick={props.onCloseButtonClick}>SignUp</button>
-
+      <form id="form-modal">
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input className="form-input" type="text" name="username" placeholder="Enter your username"/>
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input className="form-input" type="password" name="password" placeholder="Enter your password"/>
+        </div>
+        <div id='button-container'>
+          <button className="form-button" onClick={(e) => {props.login(e);props.onCloseButtonClick();}}>Login</button>
+          <button className="form-button" onClick={props.onCloseButtonClick}>SignUp</button>
+        </div>
       </form>
-      </div>
     </div>
   )
 }

@@ -5,10 +5,40 @@ import { Line } from 'react-chartjs-2'
 
 export const LineChart = ({ chartData }) => {
   return (
-    <div>
+    <div id="linechart">
       <Line 
       data={chartData}
-      options={{responsive: false}}
+      options={
+        {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+                display: false,
+            }
+          },
+          scaleFontColor : '#666',
+          scales:{
+            x:{
+              grid: {
+                display: false
+              },
+              ticks: {
+                color: "white"
+              }
+            },
+            y:{
+              grid: {
+                display: false
+              },
+              ticks: {
+                color: "white"
+              }
+            }
+          }
+        }
+      }
       />
     </div>
   )

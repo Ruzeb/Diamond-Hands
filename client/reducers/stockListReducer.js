@@ -2,15 +2,16 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   userName: '',
-  stockName: 'HOOD',
+  stockName: 'MOCK STOCK',
   searchList: [],
-  stockList: ['AMC', 'TSLA', 'HOOD'],
+  stockList: ['MOCKSTOCK1', 'MOCKSTOCK2', 'MOCKSTOCK3'],
   data : {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
     datasets: [{
-      label: 'HOOD stock',
+      label: '',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
+      color: '#666',
       data: [131.3500, 130.9698, 131.0262, 130.9400],
     }]
   }
@@ -20,8 +21,8 @@ const parseData = (data) => {
   const arrData = [];
   const arrLabels = [];
   for (const date in data){
-    arrData.push((Number(data[date]['4. close'])).toFixed(2));
-    arrLabels.push((new Date(date).toLocaleTimeString('en-US')));
+    arrData.unshift((Number(data[date]['4. close'])).toFixed(2));
+    arrLabels.unshift((new Date(date).toLocaleTimeString('en-US')));
   }
   return [arrLabels, arrData];
 }
@@ -52,6 +53,7 @@ const stockListReducer = (state=initialState, action) => {
       // console.log(action.payload)
       return {
         ...state,
+        searchList: [],
         stockName: action.payload['Meta Data']['2. Symbol'],
         data: data
       };
